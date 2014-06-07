@@ -1,0 +1,3 @@
+Spot 1,34QCH6325382059, 10KM, "A Random spot on the globe"
+Spot 2,49VDC1933169122, 4000M, "Another random spot on the globe"
+Spot 3,24XVK5252656544, 6.7KM, "Yet another random spot on the globe"
