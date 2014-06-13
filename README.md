@@ -12,10 +12,10 @@ A repot for teaching and putting circles on a map
 
 #How to get things to compile:
 1. Get a compiler if you are on a debian system, run
-`sudo apt-get install gcc`
+  1. `sudo apt-get install gcc`
 2. Write some code. This repo has an example hello_world.cpp program
 3. Compile your code. Note that if you forget to specify an output file, it will go to a.out
-`g++ -o hello hello_world.cpp`
+  1. `g++ -o hello hello_world.cpp`
 4. Run your program
-`./hello`
+  1. `./hello`
 
