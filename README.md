@@ -35,3 +35,17 @@ There is a set of sample data in this repository. This data consists of a point 
 4. Run your program
   1. `./hello`
 
+#How to look at the c++ regex demo
+1. Make sure your compiler supports C++0x11 (Most newer ones will)
+2. Update your copy of the repo
+   1. `git fetch origin`
+3. Create a local branch that follows the regexdemo remote branch
+   1. `git checkout --track origin/regexdemo`
+4. Compile the example
+   1. `g++ -o example example.cpp`
+5. Run the example
+   1. `./example people.txt`
+6. Examine the code in whatever text editor you like
+7. Remember to switch back to your branch when you are done looking around
+   1. `git checkout schell`
+
