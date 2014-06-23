@@ -2,6 +2,9 @@ circleplot
 ==========
 
 A repot for teaching and putting circles on a map
+#Notes:
+1. 2014-06-23 We want to group all of the related data together in a single object. For this we will use classes. Have a look at the regex demo for use of classes in c++. For those of you working in python, try to figure out how to use classes. I will be pushing a demo using classes shortly. 
+ 
 
 #Intructions:
 1. Clone the repo
