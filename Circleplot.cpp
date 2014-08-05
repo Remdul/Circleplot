@@ -69,6 +69,7 @@ string Circle::getDesc()
 
 void split (const string& s, char c, vector<string>& v)
 {
+	v.clear();
 	string::size_type i = 0;
 	string::size_type j = s.find(c);
 	while (j != string::npos)
