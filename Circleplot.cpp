@@ -1,6 +1,6 @@
 /*
 Compile using:
-g++ -I /usr/local/boost_1_55_0/ Circleplot.cpp -L /usr/local/boost_1_55_0/bin.v2/libs/regex/build/gcc-4.8.3/release/link-static/threading-multi/ -l boost_regex -std=c++11
+g++ -I/usr/local/include -I /usr/local/boost_1_55_0/ Circleplot.cpp -L /usr/local/boost_1_55_0/bin.v2/libs/regex/build/gcc-4.8.3/release/link-static/threading-multi/ -L /usr/local/lib -l boost_regex -l Geographic -std=c++11
 */
 
 #include <string>
@@ -13,15 +13,17 @@ g++ -I /usr/local/boost_1_55_0/ Circleplot.cpp -L /usr/local/boost_1_55_0/bin.v2
 #include <map>
 #include <algorithm>
 #include <boost/regex.hpp>					//Boost REGEX
-#include <boost/algorithm/string/trim.hpp> 	// Boost Trim
-#include <boost/lexical_cast.hpp>			// Converts strings to numbers
+#include <boost/algorithm/string/trim.hpp> 	//Boost Trim
+#include <boost/lexical_cast.hpp>			//Converts strings to numbers
 #include <stdlib.h>							//For double conversion from string
+#include "GeographicLib/UTMUPS.hpp"			//Conversion of MGRS
+#include "GeographicLib/MGRS.hpp"			//Conversion of MGRS
 
 using namespace std;
+using namespace GeographicLib;
 std::ifstream file("data.txt");
 std::string line;
 typedef std::map<std::string, int, std::less<std::string> > map_type;
-boost::regex expression("[0-9]*");
 
 struct Circle {
 public:
@@ -62,7 +64,7 @@ void Circle::setValues(string sp, string mg, string ra, string de) {
 
 void Circle::printValues() {
 	cout << "Spot        : " << cutWhitespace(getSpot()) << endl;
-	cout << "MGRS        : " << cutWhitespace(getMgrs()) << endl;
+	cout << "MGRS        : " << getMgrs() << endl;
 	cout << "Radius      : " << getRadius() << " Meters" << endl;
 	cout << "Description : " << cutQuotes(getDesc()) << endl;
 	cout << endl;
@@ -96,6 +98,14 @@ double Circle::getRadius() {
 }
 
 string Circle::getMgrs() {
+	string newmgrs = cutWhitespace(mgrs);
+	int zone, prec;
+	bool northp;
+	double x, y;
+	MGRS::Reverse(newmgrs, zone, northp, x, y, prec);
+	double lat, lon;
+	UTMUPS::Reverse(zone, northp, x, y, lat, lon);
+	cout << "Lat/Lon     : " << prec << " Prec" << " " << lat << " Lat" << " " << lon << " Lon"<< "\n";
 	return mgrs;
 }
 
