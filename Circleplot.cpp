@@ -47,6 +47,11 @@ private:
 	double		lat;
 	double		lon;
 };
+struct Point {
+     Point( double X, double Y ): x(X), y(Y) {};
+     double x;
+     double y;
+};//Simple Point structure
 
 string cutWhitespace(string text) {
 	boost::trim(text);
