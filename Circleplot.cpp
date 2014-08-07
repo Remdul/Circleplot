@@ -18,9 +18,15 @@ g++ -I/usr/local/include -I /usr/local/boost_1_55_0/ Circleplot.cpp -L /usr/loca
 #include <stdlib.h>							//For double conversion from string
 #include "GeographicLib/UTMUPS.hpp"			//Conversion of MGRS
 #include "GeographicLib/MGRS.hpp"			//Conversion of MGRS
+#include "GeographicLib/GeoCoords.hpp"      //GeoCoords class
+#include "boost/format.hpp"					// Purtifying Output
+
 
 using namespace std;
 using namespace GeographicLib;
+using boost::format;
+using boost::io::group;
+
 std::ifstream file("data.txt");
 std::string line;
 typedef std::map<std::string, int, std::less<std::string> > map_type;
@@ -29,15 +35,17 @@ struct Circle {
 public:
 	string getSpot();
 	double getRadius();
-	string getMgrs();
+	GeoCoords getCoords();
 	string getDesc();
 	void setValues(string, string, string, string);
 	void printValues();
 private:
-	string spot;
-	string mgrs;
-	string radius;
-	string description;
+	string 		spot;
+	GeoCoords 	coords;
+	string 		radius;
+	string 		description;
+	double		lat;
+	double		lon;
 };
 
 string cutWhitespace(string text) {
@@ -56,17 +64,25 @@ string cutQuotes(string text) {
 }
 
 void Circle::setValues(string sp, string mg, string ra, string de) {
-	spot = sp;
-	mgrs = mg;
-	radius = ra;
+	GeoCoords c(mg);
+	spot 		= sp;
+	coords 		= c;
+	radius 		= ra;
 	description = de;
+	lat 		= c.Latitude();
+	lon			= c.Longitude();
 }
 
 void Circle::printValues() {
-	cout << "Spot        : " << cutWhitespace(getSpot()) << endl;
-	cout << "MGRS        : " << getMgrs() << endl;
-	cout << "Radius      : " << getRadius() << " Meters" << endl;
-	cout << "Description : " << cutQuotes(getDesc()) << endl;
+	cout << format("+--------------------------------------------------------+\n");
+	cout << format("| %+11s : %-40s |") % "Spot" 		% cutWhitespace(getSpot()) << endl;
+    cout << format("| %+11s : %-40s |") % "MGRS" 		% getCoords().MGRSRepresentation() << endl;
+    cout << format("| %+11s : %-40s |") % "Latitude" 	% getCoords().Latitude() << endl;
+    cout << format("| %+11s : %-40s |") % "Longitude" 	% getCoords().Longitude() << endl;
+    cout << format("| %+11s : %-5s %-34s |") % "Radius" 		% getRadius() % "Meters" << endl;
+    cout << format("| %+11s : %-40s |") % "Description" 	% cutQuotes(getDesc()) << endl;
+	cout << format("+--------------------------------------------------------+\n");
+
 	cout << endl;
 }
 string Circle::getSpot() {
@@ -97,16 +113,8 @@ double Circle::getRadius() {
 	return convRad;
 }
 
-string Circle::getMgrs() {
-	string newmgrs = cutWhitespace(mgrs);
-	int zone, prec;
-	bool northp;
-	double x, y;
-	MGRS::Reverse(newmgrs, zone, northp, x, y, prec);
-	double lat, lon;
-	UTMUPS::Reverse(zone, northp, x, y, lat, lon);
-	cout << "Lat/Lon     : " << prec << " Prec" << " " << lat << " Lat" << " " << lon << " Lon"<< "\n";
-	return mgrs;
+GeoCoords Circle::getCoords() {
+	return coords;
 }
 
 string Circle::getDesc() {
@@ -133,7 +141,8 @@ int main() {
 	while (std::getline(file, line)) {
 		cout << line << endl;
 		split(line, ',', v);
-		cir.setValues(v[0], v[1], v[2], v[3]);
+
+		cir.setValues(v[0], cutWhitespace(v[1]), v[2], v[3]);
 		cir.printValues();
 	}
 }
