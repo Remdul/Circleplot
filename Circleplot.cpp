@@ -1,8 +1,3 @@
-/*
-Compile using:
-g++ -I/usr/local/include -I /usr/local/boost_1_55_0/ Circleplot.cpp -L /usr/local/boost_1_55_0/bin.v2/libs/regex/build/gcc-4.8.3/release/link-static/threading-multi/ -L /usr/local/lib -l boost_regex -l Geographic -std=c++11
-*/
-
 #include <string>
 #include <vector>
 #include <iostream>
@@ -20,38 +15,17 @@ g++ -I/usr/local/include -I /usr/local/boost_1_55_0/ Circleplot.cpp -L /usr/loca
 #include "GeographicLib/MGRS.hpp"			//Conversion of MGRS
 #include "GeographicLib/GeoCoords.hpp"      //GeoCoords class
 #include "boost/format.hpp"					// Purtifying Output
-
+#include "Circleplot.h"
 
 using namespace std;
 using namespace GeographicLib;
 using boost::format;
 using boost::io::group;
 
+int answer;
+
 std::ifstream file("data.txt");
 std::string line;
-typedef std::map<std::string, int, std::less<std::string> > map_type;
-
-struct Circle {
-public:
-	string getSpot();
-	double getRadius();
-	GeoCoords getCoords();
-	string getDesc();
-	void setValues(string, string, string, string);
-	void printValues();
-private:
-	string 		spot;
-	GeoCoords 	coords;
-	string 		radius;
-	string 		description;
-	double		lat;
-	double		lon;
-};
-struct Point {
-     Point( double X, double Y ): x(X), y(Y) {};
-     double x;
-     double y;
-};//Simple Point structure
 
 string cutWhitespace(string text) {
 	boost::trim(text);
@@ -140,7 +114,8 @@ void split(const string& s, char c, vector<string>& v) {
 	}
 }
 
-int main() {
+void processFile()
+{
 	Circle cir;
 	vector<string> v;
 	while (std::getline(file, line)) {
@@ -150,4 +125,45 @@ int main() {
 		cir.setValues(v[0], cutWhitespace(v[1]), v[2], v[3]);
 		cir.printValues();
 	}
+
+}
+
+int mainLoop()
+{
+	cout << "Welcome to Bryan Elliott's Map Circle Maker!" << endl;
+	cout << "+------------------------------------------+" << endl;
+	cout << format("|%-42s|") % "What would you like to do?" << endl;
+	cout << format("|%-42s|") % "0) Quit. I didn't want to be here." << endl;
+	cout << format("|%-42s|") % "1) Process File and Display Details" << endl;
+	cout << format("|%-42s|") % "2) Export KML File" << endl;
+	cout << "+------------------------------------------+" << endl;
+	cout << ">> ";
+	cin >> answer;
+	if (answer == 1)
+	{
+		cout << "Processing File..." << endl;
+		processFile();
+		return 0;
+	}
+	else if (answer == 0)
+	{
+		cout << "Fine. Quitting..." << endl;
+		return 0;
+	}
+	else if (answer == 2)
+	{
+		cout << "Still adding this feature. Hrmph" << endl;
+		return 0;
+	}
+	else
+	{
+		cout << "Invalid choice." << endl;
+		return 0;
+	}
+	return answer;
+}
+int main() {
+
+	mainLoop();
+	return 0;
 }
