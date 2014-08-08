@@ -132,18 +132,22 @@ void processFile()
 void printKml() {
 	ofstream handle;
 	Circle cir;
+	string cutSpot;
+	string filetype;
+	string prefile;
 
 	vector<string> v;
 	while (std::getline(file, line)) {
 		cout << line << endl;
 		split(line, ',', v);
-		cir.setValues(v[0], cutWhitespace(v[1]), v[2], v[3]);
+		cir.setValues(v[0], cutWhitespace(v[1]), v[2], cutQuotes(v[3]));
 		handle.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-		handle.open("Sample.kml");
-		handle << "<?xml version='1.0' encoding='utf-8'?>\n";
-		handle << "<kml 'xmlns=http://earth.google.com/kml/2.2'>";
+		cutSpot = cutWhitespace(v[0]);
+		filetype = ".kml";
+		prefile = cutSpot+filetype;
+		const char * filename = prefile.c_str();
+		handle.open(filename);
 		handle << cir.FormatPlacemark();
-		handle << "</kml>\n";
 		handle.close();
 	}
 }
@@ -171,8 +175,9 @@ int mainLoop()
 	}
 	else if (answer == 2)
 	{
-		cout << "Printing KML File..." << endl;
+		cout << "Exporting KML File..." << endl;
 		printKml();
+		cout << "Completed." << endl;
 		return 0;
 	}
 	else

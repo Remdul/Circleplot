@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<kml 'xmlns=http://earth.google.com/kml/2.2'><Placemark>
+<kml xmlns='http://www.opengis.net/kml/2.2'><Placemark>
 <name>Spot 3</name>
-<description>  "Yet another random spot on the globe"</description>
+<description> Yet another random spot on the globe</description>
 <Point>
 <coordinates>
 -40.7813,76.185,0

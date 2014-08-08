@@ -24,22 +24,21 @@ string Circle::FormatPlacemark()
 {
 //	cout << "TEST:: " << description << lat << lon;
     ostringstream ss;
-    ss << "<Placemark>\n"
-       << "<name>" << spot << "</name>\n"
-       << "<description> "  << description << "</description>\n"
-//       << "<Style>\n"
-//       << "<geomColor>ff0000ff</geomColor>\n"
-//       << "<geomScale>1</geomScale>\n"
-//       << "</Style>\n"
-//       << "<LineString>\n"
-//       << lon << "," << lat << ",0"
-       << "<Point>\n"
-       << "<coordinates>\n"
-       << getCoords().Longitude() << "," << getCoords().Latitude()<< ",0\n"
-       << "</coordinates>\n"
-       << "</Point>\n"
-       //       << "</LineString>\n"
-       << "</Placemark>\n";
+
+    ss
+		<< "<?xml version='1.0' encoding='utf-8'?>\n"
+		<< "<kml xmlns='http://www.opengis.net/kml/2.2'>"
+		<< "<Placemark>\n"
+		<< "<name>" << spot << "</name>\n"
+		<< "<description> "  << description << "</description>\n"
+		<< "<Point>\n"
+		<< "<coordinates>\n"
+		<< getCoords().Longitude() << "," << getCoords().Latitude()<< ",0\n"
+		<< "</coordinates>\n"
+		<< "</Point>\n"
+		<< "</Placemark>\n"
+		<< "</kml>\n";
+
 
     return ss.str();
 }

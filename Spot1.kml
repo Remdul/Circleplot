@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'><Placemark>
+<name>Spot 1</name>
+<description> A Random spot on the globe</description>
+<Point>
+<coordinates>
+19.6875,20.6328,0
+</coordinates>
+</Point>
+</Placemark>
+</kml>
