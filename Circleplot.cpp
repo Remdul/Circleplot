@@ -16,6 +16,7 @@
 #include "GeographicLib/GeoCoords.hpp"      //GeoCoords class
 #include "boost/format.hpp"					// Purtifying Output
 #include "Circleplot.h"
+#include "Exporter.h"
 
 using namespace std;
 using namespace GeographicLib;
@@ -128,6 +129,24 @@ void processFile()
 
 }
 
+void printKml() {
+	ofstream handle;
+	Circle cir;
+
+	vector<string> v;
+	while (std::getline(file, line)) {
+		cout << line << endl;
+		split(line, ',', v);
+		cir.setValues(v[0], cutWhitespace(v[1]), v[2], v[3]);
+		handle.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+		handle.open("Sample.kml");
+		handle << "<?xml version='1.0' encoding='utf-8'?>\n";
+		handle << "<kml 'xmlns=http://earth.google.com/kml/2.2'>";
+		handle << cir.FormatPlacemark();
+		handle << "</kml>\n";
+		handle.close();
+	}
+}
 int mainLoop()
 {
 	cout << "Welcome to Bryan Elliott's Map Circle Maker!" << endl;
@@ -152,7 +171,8 @@ int mainLoop()
 	}
 	else if (answer == 2)
 	{
-		cout << "Still adding this feature. Hrmph" << endl;
+		cout << "Printing KML File..." << endl;
+		printKml();
 		return 0;
 	}
 	else

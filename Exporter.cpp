@@ -20,46 +20,27 @@
 using namespace std;
 using namespace GeographicLib;
 
-string FormatPlacemark(double lat1, double long1, double lat2, double long2)
+string Circle::FormatPlacemark()
 {
-
-
+//	cout << "TEST:: " << description << lat << lon;
     ostringstream ss;
     ss << "<Placemark>\n"
-       << "<name>Path</name>\n"
-       << "<description> "  << "</description>\n"
-       << "<styleUrl>#pathstyle</styleUrl>\n"
-       << "<LineString>\n"
-       << "<tessellate>1</tessellate>\n"
-       << "<coordinates>"
-       << long1 << "," << lat1 << ",0"
-       << " "
-       << long2 << "," << lat2 << ",0"
+       << "<name>" << spot << "</name>\n"
+       << "<description> "  << description << "</description>\n"
+//       << "<Style>\n"
+//       << "<geomColor>ff0000ff</geomColor>\n"
+//       << "<geomScale>1</geomScale>\n"
+//       << "</Style>\n"
+//       << "<LineString>\n"
+//       << lon << "," << lat << ",0"
+       << "<Point>\n"
+       << "<coordinates>\n"
+       << getCoords().Longitude() << "," << getCoords().Latitude()<< ",0\n"
+       << "</Point>\n"
        << "</coordinates>\n"
-       << "</LineString>\n"
+//       << "</LineString>\n"
        << "</Placemark>\n";
 
     return ss.str();
 }
-
-int main () {
-	ofstream handle;
-
-	// http://www.cplusplus.com/reference/ios/ios/exceptions/
-	// Throw an exception on failure to open the file or on a write error.
-	handle.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-
-	// Open the KML file for writing:
-	handle.open("C:/Output/Sample.kml");
-
-	// Write to the KML file:
-	handle << "<?xml version='1.0' encoding='utf-8'?>\n";
-	handle << "<kml xmlns='http://www.opengis.net/kml/2.2'>\n";
-
-	handle << FormatPlacemark(-76.2, 38.5, -76.1, 38.6);
-
-	handle << "</kml>\n";
-	handle.close();
-}
-
 

@@ -1,5 +1,5 @@
-#ifndef _CIRCLEPLOT_HPP
-#define _CIRCLEPLOT_HPP
+#ifndef _CIRCLEPLOT_H
+#define _CIRCLEPLOT_H
 
 #include <iostream>
 #include <string>
@@ -19,6 +19,7 @@ public:
 	string getDesc();
 	void setValues(string, string, string, string);
 	void printValues();
+	string FormatPlacemark();
 private:
 	string 		spot;
 	GeoCoords 	coords;
