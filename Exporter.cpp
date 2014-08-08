@@ -36,9 +36,9 @@ string Circle::FormatPlacemark()
        << "<Point>\n"
        << "<coordinates>\n"
        << getCoords().Longitude() << "," << getCoords().Latitude()<< ",0\n"
-       << "</Point>\n"
        << "</coordinates>\n"
-//       << "</LineString>\n"
+       << "</Point>\n"
+       //       << "</LineString>\n"
        << "</Placemark>\n";
 
     return ss.str();
