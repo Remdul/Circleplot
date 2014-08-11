@@ -17,6 +17,7 @@
 #include "boost/format.hpp"					// Purtifying Output
 #include "Circleplot.h"
 #include "Exporter.h"
+#include "Draw.h"
 
 using namespace std;
 using namespace GeographicLib;
@@ -47,7 +48,7 @@ void Circle::setValues(string sp, string mg, string ra, string de) {
 	GeoCoords c(mg);
 	spot 		= sp;
 	coords 		= c;
-	radius 		= ra;
+	radius 		= getRadius(ra);
 	description = de;
 	lat 		= c.Latitude();
 	lon			= c.Longitude();
@@ -59,7 +60,7 @@ void Circle::printValues() {
     cout << format("| %+11s : %-40s |") % "MGRS" 		% getCoords().MGRSRepresentation() << endl;
     cout << format("| %+11s : %-40s |") % "Latitude" 	% getCoords().Latitude() << endl;
     cout << format("| %+11s : %-40s |") % "Longitude" 	% getCoords().Longitude() << endl;
-    cout << format("| %+11s : %-5s %-34s |") % "Radius" 		% getRadius() % "Meters" << endl;
+    cout << format("| %+11s : %-5s %-34s |") % "Radius" 		% getRealrad() % "Meters" << endl;
     cout << format("| %+11s : %-40s |") % "Description" 	% cutQuotes(getDesc()) << endl;
 	cout << format("+--------------------------------------------------------+\n");
 
@@ -69,9 +70,9 @@ string Circle::getSpot() {
 	return spot;
 }
 
-double Circle::getRadius() {
+double Circle::getRadius(string inRad) {
 	const string pattern = "([0-9.\\s]*)([a-zA-Z]*)";
-	const string target = cutWhitespace(radius);
+	const string target = cutWhitespace(inRad);
 	int measurement;
 	double convRad;
 	double unconvRad;
@@ -93,6 +94,11 @@ double Circle::getRadius() {
 	return convRad;
 }
 
+double Circle::getRealrad ()
+{
+	return radius;
+}
+
 GeoCoords Circle::getCoords() {
 	return coords;
 }
@@ -101,20 +107,12 @@ string Circle::getDesc() {
 	return description;
 }
 
-/*void createCircle(double rad, string coords) {
-	Circle cir;
-
-	GeoCoords c(coords);
-	double lat = c.Latitude();
-	double lon = c.Longitude();
-
-	Point Center(lat, lon);
-	const double PI = 3.14159;
-	for (double angle = 0; angle <= 2 * PI; angle += 0.001) {
-		Point point(lat + rad * cos(angle), lon + rad * sin(angle));
-		cout << "Lat: " << lat << "|| Lon:" << lon << endl;
-	}
-}*/
+double Circle::getLat() {
+	return lat;
+}
+double Circle::getLon() {
+	return lon;
+}
 
 void split(const string& s, char c, vector<string>& v) {
 	v.clear();
@@ -139,6 +137,7 @@ void processFile()
 		split(line, ',', v);
 
 		cir.setValues(v[0], cutWhitespace(v[1]), v[2], v[3]);
+		createCircle();
 		cir.printValues();
 	}
 
@@ -202,8 +201,8 @@ int mainLoop()
 		return 0;
 	} else if (answer == 3) {
 		cout << "Creating Circle..." << endl;
-		//createCircle(100, "34QCH6325382059");
-		cout << "Haha. Just kidding. This doesn't work yet..." << endl;
+		createCircle();
+//		cout << "Haha. Just kidding. This doesn't work yet..." << endl;
 		return 0;
 	} else {
 		cout << "Invalid choice." << endl;

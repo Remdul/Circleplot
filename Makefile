@@ -26,7 +26,7 @@ LFLAGS = -L/usr/local/lib  -L/usr/local/boost_1_55_0/bin.v2/libs/regex/build/gcc
 LIBS = -lboost_regex -lGeographic
 
 # define the C source files
-SRCS = Circleplot.cpp Exporter.cpp
+SRCS = Circleplot.cpp Exporter.cpp Draw.cpp
 
 # define the C object files 
 #

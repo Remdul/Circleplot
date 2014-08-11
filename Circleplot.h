@@ -14,32 +14,30 @@ using namespace GeographicLib;
 struct Circle {
 public:
 	string getSpot();
-	double getRadius();
+	double getRadius(string);
 	GeoCoords getCoords();
 	string getDesc();
 	void setValues(string, string, string, string);
 	void printValues();
 	string FormatPlacemark();
+	double getLon();
+	double getLat();
+	double getRealrad();
 private:
 	string 		spot;
 	GeoCoords 	coords;
-	string 		radius;
+	double 		radius;
 	string 		description;
 	double		lat;
 	double		lon;
 };
-struct Point {
-public:
-	Point( double lat, double lon );
 
-private:
-     double lat;
-     double lon;
-};
+// PROTOTYPES
+GeoCoords 	getCoords();
+double		getRadius(string);
+double		getRealrad();
+double 		getLon();
+double 		getLat();
 
-GeoCoords getCoords();
-void createCircle(double, string);
-//void createCircle(double, string);
-//Point::Point( double lat, double lon );
 
 #endif
