@@ -28,7 +28,18 @@ private:
 	double		lat;
 	double		lon;
 };
+struct Point {
+public:
+	Point( double lat, double lon );
 
+private:
+     double lat;
+     double lon;
+};
 
+GeoCoords getCoords();
+void createCircle(double, string);
+//void createCircle(double, string);
+//Point::Point( double lat, double lon );
 
 #endif

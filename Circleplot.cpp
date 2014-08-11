@@ -101,6 +101,21 @@ string Circle::getDesc() {
 	return description;
 }
 
+/*void createCircle(double rad, string coords) {
+	Circle cir;
+
+	GeoCoords c(coords);
+	double lat = c.Latitude();
+	double lon = c.Longitude();
+
+	Point Center(lat, lon);
+	const double PI = 3.14159;
+	for (double angle = 0; angle <= 2 * PI; angle += 0.001) {
+		Point point(lat + rad * cos(angle), lon + rad * sin(angle));
+		cout << "Lat: " << lat << "|| Lon:" << lon << endl;
+	}
+}*/
+
 void split(const string& s, char c, vector<string>& v) {
 	v.clear();
 	string::size_type i = 0;
@@ -133,24 +148,32 @@ void printKml() {
 	ofstream handle;
 	Circle cir;
 	string cutSpot;
-	string filetype;
-	string prefile;
-
+	string filePre = "CircleSpots.kml";
+	vector<Circle> buildKML;
 	vector<string> v;
+
+	/* Load the File */
+
+	handle.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+	const char * filename = filePre.c_str();
+	handle.open(filename);
+
+	handle << "<?xml version='1.0' encoding='utf-8'?>\n";
+	handle << "<kml xmlns='http://www.opengis.net/kml/2.2'>\n";
+	handle << "<Document>\n";
 	while (std::getline(file, line)) {
 		cout << line << endl;
 		split(line, ',', v);
 		cir.setValues(v[0], cutWhitespace(v[1]), v[2], cutQuotes(v[3]));
-		handle.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-		cutSpot = cutWhitespace(v[0]);
-		filetype = ".kml";
-		prefile = cutSpot+filetype;
-		const char * filename = prefile.c_str();
-		handle.open(filename);
+		buildKML.push_back (cir);
 		handle << cir.FormatPlacemark();
-		handle.close();
 	}
+	/* End File */
+	handle << "</Document>\n";
+	handle << "</kml>\n";
+	handle.close();
 }
+
 int mainLoop()
 {
 	cout << "Welcome to Bryan Elliott's Map Circle Maker!" << endl;
@@ -159,29 +182,30 @@ int mainLoop()
 	cout << format("|%-42s|") % "0) Quit. I didn't want to be here." << endl;
 	cout << format("|%-42s|") % "1) Process File and Display Details" << endl;
 	cout << format("|%-42s|") % "2) Export KML File" << endl;
+	cout << format("|%-42s|") % "3) Create Circle. Temp" << endl;
 	cout << "+------------------------------------------+" << endl;
 	cout << ">> ";
 	cin >> answer;
-	if (answer == 1)
-	{
+	if (answer == 0) {
+		cout << "Fine. Quitting..." << endl;
+		return 0;
+	} else if (answer == 1) {
 		cout << "Processing File..." << endl;
 		processFile();
 		return 0;
 	}
-	else if (answer == 0)
-	{
-		cout << "Fine. Quitting..." << endl;
-		return 0;
-	}
-	else if (answer == 2)
-	{
+
+	else if (answer == 2) {
 		cout << "Exporting KML File..." << endl;
 		printKml();
 		cout << "Completed." << endl;
 		return 0;
-	}
-	else
-	{
+	} else if (answer == 3) {
+		cout << "Creating Circle..." << endl;
+		//createCircle(100, "34QCH6325382059");
+		cout << "Haha. Just kidding. This doesn't work yet..." << endl;
+		return 0;
+	} else {
 		cout << "Invalid choice." << endl;
 		return 0;
 	}
