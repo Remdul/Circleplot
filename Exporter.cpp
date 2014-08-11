@@ -20,22 +20,29 @@
 using namespace std;
 using namespace GeographicLib;
 
-
 string Circle::FormatPlacemark()
 {
     ostringstream ss;
+    ostringstream rr;
+    ostringstream tt;
+    string combined;
+
 
     ss
 		<< "<Placemark>\n"
 		<< "<name>" << getSpot() << "</name>\n"
 		<< "<description>"  << getDesc() << "</description>\n"
-		<< "<Point>\n"
-		<< "<coordinates>\n"
-		<< getCoords().Longitude() << "," << getCoords().Latitude()<< ",0\n"
+		<< "<LineString>\n"
+		<< "<coordinates>\n";
+    rr
+//		<< getLat() << "," << getLon()<< ",0\n";
+    	<< createCircle();
+	tt
 		<< "</coordinates>\n"
-		<< "</Point>\n"
+		<< "</Linestring>\n"
 		<< "</Placemark>\n";
 
-    return ss.str();
+	combined = ss.str()+rr.str()+tt.str();
+    return combined;
 }
 

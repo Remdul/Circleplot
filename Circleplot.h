@@ -23,6 +23,7 @@ public:
 	double getLon();
 	double getLat();
 	double getRealrad();
+	string createCircle();
 private:
 	string 		spot;
 	GeoCoords 	coords;
@@ -38,6 +39,7 @@ double		getRadius(string);
 double		getRealrad();
 double 		getLon();
 double 		getLat();
+string 		createCircle();
 
 
 #endif

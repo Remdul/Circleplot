@@ -14,10 +14,12 @@
 #include "GeographicLib/UTMUPS.hpp"			//Conversion of MGRS
 #include "GeographicLib/MGRS.hpp"			//Conversion of MGRS
 #include "GeographicLib/GeoCoords.hpp"      //GeoCoords class
+#include <GeographicLib/Geodesic.hpp>
+#include <GeographicLib/Constants.hpp>
+
 #include "boost/format.hpp"					// Purtifying Output
 #include "Circleplot.h"
 #include "Exporter.h"
-#include "Draw.h"
 
 using namespace std;
 using namespace GeographicLib;
@@ -25,6 +27,7 @@ using boost::format;
 using boost::io::group;
 
 int answer;
+vector <string> co;
 
 std::ifstream file("data.txt");
 std::string line;
@@ -56,12 +59,12 @@ void Circle::setValues(string sp, string mg, string ra, string de) {
 
 void Circle::printValues() {
 	cout << format("+--------------------------------------------------------+\n");
-	cout << format("| %+11s : %-40s |") % "Spot" 		% cutWhitespace(getSpot()) << endl;
-    cout << format("| %+11s : %-40s |") % "MGRS" 		% getCoords().MGRSRepresentation() << endl;
-    cout << format("| %+11s : %-40s |") % "Latitude" 	% getCoords().Latitude() << endl;
-    cout << format("| %+11s : %-40s |") % "Longitude" 	% getCoords().Longitude() << endl;
-    cout << format("| %+11s : %-5s %-34s |") % "Radius" 		% getRealrad() % "Meters" << endl;
-    cout << format("| %+11s : %-40s |") % "Description" 	% cutQuotes(getDesc()) << endl;
+	cout << format("| %+11s : %-40s |") % "Spot" 		% cutWhitespace(getSpot()) 			<< endl;
+    cout << format("| %+11s : %-40s |") % "MGRS" 		% getCoords().MGRSRepresentation() 	<< endl;
+    cout << format("| %+11s : %-40s |") % "Latitude" 	% getLat() 							<< endl;
+    cout << format("| %+11s : %-40s |") % "Longitude" 	% getLon() 							<< endl;
+    cout << format("| %+11s : %-5s %-34s |") % "Radius" % getRealrad() % "Meters" 			<< endl;
+    cout << format("| %+11s : %-40s |") % "Description" % cutQuotes(getDesc()) 				<< endl;
 	cout << format("+--------------------------------------------------------+\n");
 
 	cout << endl;
@@ -137,10 +140,8 @@ void processFile()
 		split(line, ',', v);
 
 		cir.setValues(v[0], cutWhitespace(v[1]), v[2], v[3]);
-		createCircle();
 		cir.printValues();
 	}
-
 }
 
 void printKml() {
@@ -164,7 +165,7 @@ void printKml() {
 		cout << line << endl;
 		split(line, ',', v);
 		cir.setValues(v[0], cutWhitespace(v[1]), v[2], cutQuotes(v[3]));
-		buildKML.push_back (cir);
+//		buildKML.push_back (cir);
 		handle << cir.FormatPlacemark();
 	}
 	/* End File */
@@ -173,8 +174,47 @@ void printKml() {
 	handle.close();
 }
 
+string Circle::createCircle() {
+	ostringstream fulltext;
+	string 	omg;
+	try {
+		Geodesic geod(Constants::WGS84_a(), Constants::WGS84_f());
+		{
+			Circle 	cir;
+			double	points	= 100;
+			double 	lat1 	= getLat();
+			double	lon1 	= getLon();
+			double	s12 	= getRealrad();
+			double	pi		= 360;
+			double	azi 	= pi / points;
+			double	azi1	= 0;
+			double 	lat2;
+			double 	lon2;
+			int i;
+
+			for (i = 0; i <=points; ++i)
+			{
+				if (azi1 >= pi)
+				{
+					azi1 = azi1 + azi - pi;
+				}
+				geod.Direct(lat1, lon1, azi1, s12, lat2, lon2);
+				azi1 = azi1 + azi;
+				fulltext << lat2 << "," << lon2 << ",0\n";
+			}
+		}
+	} catch (const exception& e) {
+		cerr << "Caught exception: " << e.what() << "\n";
+	}
+	return fulltext.str();
+}
+
+
 int mainLoop()
 {
+	vector<string> v;
+	Circle cir;
+
 	cout << "Welcome to Bryan Elliott's Map Circle Maker!" << endl;
 	cout << "+------------------------------------------+" << endl;
 	cout << format("|%-42s|") % "What would you like to do?" << endl;
@@ -201,8 +241,13 @@ int mainLoop()
 		return 0;
 	} else if (answer == 3) {
 		cout << "Creating Circle..." << endl;
-		createCircle();
-//		cout << "Haha. Just kidding. This doesn't work yet..." << endl;
+		while (std::getline(file, line)) {
+			cout << line << endl;
+			split(line, ',', v);
+			cir.setValues(v[0], cutWhitespace(v[1]), v[2], cutQuotes(v[3]));
+			cout << cir.createCircle();
+			cout << "------------------------------" << endl << endl << endl;
+		}
 		return 0;
 	} else {
 		cout << "Invalid choice." << endl;
