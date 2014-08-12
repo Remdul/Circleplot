@@ -27,8 +27,6 @@ using boost::format;
 using boost::io::group;
 
 int answer;
-vector <string> co;
-
 std::ifstream file("data.txt");
 std::string line;
 
@@ -36,14 +34,12 @@ string cutWhitespace(string text) {
 	boost::trim(text);
 	boost::regex regexPattern { "[[:space:]]+", boost::regex_constants::egrep };
 	string result = boost::regex_replace(text, regexPattern, "");
-//	  cout << result << endl;
 	return result;
 }
 string cutQuotes(string text) {
 	boost::trim(text);
 	boost::regex regexPattern { "(\\s)*(\")", boost::regex_constants::egrep };
 	string result = boost::regex_replace(text, regexPattern, "");
-//	  cout << result << endl;
 	return result;
 }
 
@@ -165,7 +161,6 @@ void printKml() {
 		cout << line << endl;
 		split(line, ',', v);
 		cir.setValues(v[0], cutWhitespace(v[1]), v[2], cutQuotes(v[3]));
-//		buildKML.push_back (cir);
 		handle << cir.FormatPlacemark();
 	}
 	/* End File */

@@ -108,7 +108,7 @@
 20.7229,19.6815,0
 20.7229,19.6935,0
 </coordinates>
-</Linestring>
+</LineString>
 </Placemark>
 <Placemark>
 <name>Spot 2</name>
@@ -217,7 +217,7 @@
 56.5953,109.683,0
 56.5953,109.692,0
 </coordinates>
-</Linestring>
+</LineString>
 </Placemark>
 <Placemark>
 <name>Spot 3</name>
@@ -326,7 +326,7 @@
 76.2449,-40.7971,0
 76.2449,-40.7654,0
 </coordinates>
-</Linestring>
+</LineString>
 </Placemark>
 </Document>
 </kml>

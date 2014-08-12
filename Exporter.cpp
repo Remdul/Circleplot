@@ -39,7 +39,7 @@ string Circle::FormatPlacemark()
     	<< createCircle();
 	tt
 		<< "</coordinates>\n"
-		<< "</Linestring>\n"
+		<< "</LineString>\n"
 		<< "</Placemark>\n";
 
 	combined = ss.str()+rr.str()+tt.str();
