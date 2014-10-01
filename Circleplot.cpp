@@ -16,7 +16,7 @@
 #include "GeographicLib/GeoCoords.hpp"      //GeoCoords class
 #include <GeographicLib/Geodesic.hpp>
 #include <GeographicLib/Constants.hpp>
-
+// Libz | Libzip  | c_str | LibZip API
 #include "boost/format.hpp"					// Purtifying Output
 #include "Circleplot.h"
 #include "Exporter.h"
@@ -27,8 +27,8 @@ using boost::format;
 using boost::io::group;
 
 int answer;
-std::ifstream file("data.txt");
-std::string line;
+ifstream file("data.txt");
+string line;
 
 string cutWhitespace(string text) {
 	boost::trim(text);
@@ -113,8 +113,8 @@ double Circle::getLon() {
 	return lon;
 }
 
-void split(const string& s, char c, vector<string>& v) {
-	v.clear();
+vector<string> split(const string& s, char c) {
+    vector<string> v;
 	string::size_type i = 0;
 	string::size_type j = s.find(c);
 	while (j != string::npos) {
@@ -125,6 +125,7 @@ void split(const string& s, char c, vector<string>& v) {
 			v.push_back(s.substr(i, s.length()));
 		}
 	}
+	return v;
 }
 
 void processFile()
@@ -133,7 +134,7 @@ void processFile()
 	vector<string> v;
 	while (std::getline(file, line)) {
 		cout << line << endl;
-		split(line, ',', v);
+		v = split(line, ',');
 
 		cir.setValues(v[0], cutWhitespace(v[1]), v[2], v[3]);
 		cir.printValues();
@@ -153,20 +154,28 @@ void printKml() {
 	handle.exceptions(std::ofstream::failbit | std::ofstream::badbit);
 	const char * filename = filePre.c_str();
 	handle.open(filename);
-
-	handle << "<?xml version='1.0' encoding='utf-8'?>\n";
-	handle << "<kml xmlns='http://www.opengis.net/kml/2.2'>\n";
-	handle << "<Document>\n";
-	while (std::getline(file, line)) {
-		cout << line << endl;
-		split(line, ',', v);
-		cir.setValues(v[0], cutWhitespace(v[1]), v[2], cutQuotes(v[3]));
-		handle << cir.FormatPlacemark();
-	}
-	/* End File */
-	handle << "</Document>\n";
-	handle << "</kml>\n";
+	handle << prepKml();
 	handle.close();
+}
+
+string prepKml()
+{
+    ostringstream stream;
+    Circle cir;
+    vector<string> v;
+
+    stream << "<?xml version='1.0' encoding='utf-8'?>\n";
+    stream << "<kml xmlns='http://www.opengis.net/kml/2.2'>\n";
+    stream << "<Document>\n";
+    while (std::getline(file, line)) {
+        cout << line << endl;
+        v = split(line, ',');
+        cir.setValues(v[0], cutWhitespace(v[1]), v[2], cutQuotes(v[3]));
+        stream << cir.FormatPlacemark();
+    }
+    stream << "</Document>\n";
+    stream << "</kml>\n";
+    return stream.str();
 }
 
 string Circle::createCircle() {
@@ -175,8 +184,9 @@ string Circle::createCircle() {
 	try {
 		Geodesic geod(Constants::WGS84_a(), Constants::WGS84_f());
 		{
-			Circle 	cir;
 			double	points	= 100;
+			Circle 	cir;
+
 			double 	lat1 	= getLat();
 			double	lon1 	= getLon();
 			double	s12 	= getRealrad();
@@ -195,7 +205,7 @@ string Circle::createCircle() {
 				}
 				geod.Direct(lat1, lon1, azi1, s12, lat2, lon2);
 				azi1 = azi1 + azi;
-				fulltext << lat2 << "," << lon2 << ",0\n";
+				fulltext << lon2 << "," << lat2 << ",0\n";
 			}
 		}
 	} catch (const exception& e) {
@@ -210,14 +220,14 @@ int mainLoop()
 	vector<string> v;
 	Circle cir;
 
-	cout << "Welcome to Bryan Elliott's Map Circle Maker!" << endl;
-	cout << "+------------------------------------------+" << endl;
-	cout << format("|%-42s|") % "What would you like to do?" << endl;
-	cout << format("|%-42s|") % "0) Quit. I didn't want to be here." << endl;
-	cout << format("|%-42s|") % "1) Process File and Display Details" << endl;
-	cout << format("|%-42s|") % "2) Export KML File" << endl;
-	cout << format("|%-42s|") % "3) Create Circle. Temp" << endl;
-	cout << "+------------------------------------------+" << endl;
+	cout << "Welcome to Bryan Elliott's Map Circle Maker!" 				<< endl;
+	cout << "+------------------------------------------+" 				<< endl;
+	cout << format("|%-42s|") % "What would you like to do?" 			<< endl;
+	cout << format("|%-42s|") % "0) Quit. I didn't want to be here." 	<< endl;
+	cout << format("|%-42s|") % "1) Process File and Display Details"	<< endl;
+	cout << format("|%-42s|") % "2) Export KML File"					<< endl;
+	cout << format("|%-42s|") % "3) Create Circle. Temp" 				<< endl;
+	cout << "+------------------------------------------+" 				<< endl;
 	cout << ">> ";
 	cin >> answer;
 	if (answer == 0) {
@@ -238,7 +248,7 @@ int mainLoop()
 		cout << "Creating Circle..." << endl;
 		while (std::getline(file, line)) {
 			cout << line << endl;
-			split(line, ',', v);
+			v = split(line, ',');
 			cir.setValues(v[0], cutWhitespace(v[1]), v[2], cutQuotes(v[3]));
 			cout << cir.createCircle();
 			cout << "------------------------------" << endl << endl << endl;

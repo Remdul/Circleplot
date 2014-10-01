@@ -30,7 +30,7 @@ string Circle::FormatPlacemark()
 
     ss
 		<< "<Placemark>\n"
-		<< "<name>" << getSpot() << "</name>\n"
+		<< "<name>" 		<< getSpot() << "</name>\n"
 		<< "<description>"  << getDesc() << "</description>\n"
 		<< "<LineString>\n"
 		<< "<coordinates>\n";
