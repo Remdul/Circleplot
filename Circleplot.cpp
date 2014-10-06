@@ -7,6 +7,7 @@
 #include <string>
 #include <map>
 #include <algorithm>
+#include "libzip/lib/zip.h"
 #include <boost/regex.hpp>					//Boost REGEX
 #include <boost/algorithm/string/trim.hpp> 	//Boost Trim
 #include <boost/lexical_cast.hpp>			//Converts strings to numbers
@@ -16,7 +17,6 @@
 #include "GeographicLib/GeoCoords.hpp"      //GeoCoords class
 #include <GeographicLib/Geodesic.hpp>
 #include <GeographicLib/Constants.hpp>
-// Libz | Libzip  | c_str | LibZip API
 #include "boost/format.hpp"					// Purtifying Output
 #include "Circleplot.h"
 #include "Exporter.h"
@@ -178,6 +178,17 @@ string prepKml()
     return stream.str();
 }
 
+void createZip()
+{
+    string file = "Circlespots.kml";
+    char *data  = prepKml().c_str();
+
+    int error = 0;
+    zip *archive = zip_open("Circleplot.zip", 0, &error);
+    zip_source *source = zip_source_buffer(archive, data, sizeof(data), 0);
+    int index = (int)zip_file_add(archive, file.c_str(), source, ZIP_FL_OVERWRITE);
+}
+
 string Circle::createCircle() {
 	ostringstream fulltext;
 	string 	omg;
@@ -240,9 +251,26 @@ int mainLoop()
 	}
 
 	else if (answer == 2) {
-		cout << "Exporting KML File..." << endl;
-		printKml();
-		cout << "Completed." << endl;
+	    cout << "Export File To:" << endl;
+	    cout << "1) Zip File" << endl;
+	    cout << "2) KML File Only" << endl;
+	    int subanswer = cin;
+	    if (cin == 1)
+	    {
+            cout << "Exporting ZIP File..." << endl;
+	        createZip();
+	    }
+	    else if (cin == 2)
+	    {
+	        cout << "Exporting KML File..." << endl;
+	        printKml();
+	    }
+	    else
+	    {
+	        cout << "Uhm... invalid answer..." << endl;
+	        break;
+	    }
+	    cout << "Completed." << endl;
 		return 0;
 	} else if (answer == 3) {
 		cout << "Creating Circle..." << endl;

@@ -1,0 +1,440 @@
+Determining if the function _close exists failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1222420374/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1222420374.dir/build.make CMakeFiles/cmTryCompileExec1222420374.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1222420374.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_close   -o CMakeFiles/cmTryCompileExec1222420374.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1222420374
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1222420374.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_close    CMakeFiles/cmTryCompileExec1222420374.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1222420374 -rdynamic 
+CMakeFiles/cmTryCompileExec1222420374.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `_close'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec1222420374] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec1222420374/fast] Error 2
+
+
+Determining if the function _dup exists failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3991366289/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3991366289.dir/build.make CMakeFiles/cmTryCompileExec3991366289.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3991366289.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_dup   -o CMakeFiles/cmTryCompileExec3991366289.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3991366289
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3991366289.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_dup    CMakeFiles/cmTryCompileExec3991366289.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3991366289 -rdynamic 
+CMakeFiles/cmTryCompileExec3991366289.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `_dup'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec3991366289] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec3991366289/fast] Error 2
+
+
+Determining if the function _fdopen exists failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2406717815/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2406717815.dir/build.make CMakeFiles/cmTryCompileExec2406717815.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2406717815.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_fdopen   -o CMakeFiles/cmTryCompileExec2406717815.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2406717815
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2406717815.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_fdopen    CMakeFiles/cmTryCompileExec2406717815.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2406717815 -rdynamic 
+CMakeFiles/cmTryCompileExec2406717815.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `_fdopen'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec2406717815] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec2406717815/fast] Error 2
+
+
+Determining if the function _fileno exists failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec171315516/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec171315516.dir/build.make CMakeFiles/cmTryCompileExec171315516.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec171315516.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_fileno   -o CMakeFiles/cmTryCompileExec171315516.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec171315516
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec171315516.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_fileno    CMakeFiles/cmTryCompileExec171315516.dir/CheckFunctionExists.c.o  -o cmTryCompileExec171315516 -rdynamic 
+CMakeFiles/cmTryCompileExec171315516.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `_fileno'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec171315516] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec171315516/fast] Error 2
+
+
+Determining if the function _open exists failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1199646428/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1199646428.dir/build.make CMakeFiles/cmTryCompileExec1199646428.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1199646428.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_open   -o CMakeFiles/cmTryCompileExec1199646428.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1199646428
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1199646428.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_open    CMakeFiles/cmTryCompileExec1199646428.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1199646428 -rdynamic 
+CMakeFiles/cmTryCompileExec1199646428.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `_open'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec1199646428] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec1199646428/fast] Error 2
+
+
+Determining if the function _snprintf exists failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2193837201/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2193837201.dir/build.make CMakeFiles/cmTryCompileExec2193837201.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2193837201.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_snprintf   -o CMakeFiles/cmTryCompileExec2193837201.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2193837201
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2193837201.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_snprintf    CMakeFiles/cmTryCompileExec2193837201.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2193837201 -rdynamic 
+CMakeFiles/cmTryCompileExec2193837201.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `_snprintf'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec2193837201] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec2193837201/fast] Error 2
+
+
+Determining if the function _strdup exists failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1861594657/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1861594657.dir/build.make CMakeFiles/cmTryCompileExec1861594657.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1861594657.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_strdup   -o CMakeFiles/cmTryCompileExec1861594657.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1861594657
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1861594657.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_strdup    CMakeFiles/cmTryCompileExec1861594657.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1861594657 -rdynamic 
+CMakeFiles/cmTryCompileExec1861594657.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `_strdup'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec1861594657] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec1861594657/fast] Error 2
+
+
+Determining if the function _stricmp exists failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3460719643/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3460719643.dir/build.make CMakeFiles/cmTryCompileExec3460719643.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3460719643.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_stricmp   -o CMakeFiles/cmTryCompileExec3460719643.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3460719643
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3460719643.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=_stricmp    CMakeFiles/cmTryCompileExec3460719643.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3460719643 -rdynamic 
+CMakeFiles/cmTryCompileExec3460719643.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `_stricmp'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec3460719643] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec3460719643/fast] Error 2
+
+
+Determining if the MoveFileExA exist failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec115103910/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec115103910.dir/build.make CMakeFiles/cmTryCompileExec115103910.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec115103910.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec115103910.dir/CheckSymbolExists.c.o   -c /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CheckSymbolExists.c:2:21: fatal error: windows.h: No such file or directory
+ #include <windows.h>
+                     ^
+compilation terminated.
+gmake[1]: *** [CMakeFiles/cmTryCompileExec115103910.dir/CheckSymbolExists.c.o] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec115103910/fast] Error 2
+
+File /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <windows.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef MoveFileExA
+  return ((int*)(&MoveFileExA))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining size of __int8 failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1091992893/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1091992893.dir/build.make CMakeFiles/cmTryCompileExec1091992893.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1091992893.dir/__INT8_LIBZIP.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1091992893.dir/__INT8_LIBZIP.c.o   -c /home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT8_LIBZIP.c
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT8_LIBZIP.c:17:22: error: ‘__int8’ undeclared here (not in a function)
+ #define SIZE (sizeof(__int8))
+                      ^
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT8_LIBZIP.c:19:12: note: in expansion of macro ‘SIZE’
+   ('0' + ((SIZE / 10000)%10)),
+            ^
+gmake[1]: *** [CMakeFiles/cmTryCompileExec1091992893.dir/__INT8_LIBZIP.c.o] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec1091992893/fast] Error 2
+
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT8_LIBZIP.c:
+#include <sys/types.h>
+#include <stdint.h>
+#include <stddef.h>
+
+
+#undef KEY
+#if defined(__i386)
+# define KEY '_','_','i','3','8','6'
+#elif defined(__x86_64)
+# define KEY '_','_','x','8','6','_','6','4'
+#elif defined(__ppc__)
+# define KEY '_','_','p','p','c','_','_'
+#elif defined(__ppc64__)
+# define KEY '_','_','p','p','c','6','4','_','_'
+#endif
+
+#define SIZE (sizeof(__int8))
+char info_size[] =  {'I', 'N', 'F', 'O', ':', 's','i','z','e','[',
+  ('0' + ((SIZE / 10000)%10)),
+  ('0' + ((SIZE / 1000)%10)),
+  ('0' + ((SIZE / 100)%10)),
+  ('0' + ((SIZE / 10)%10)),
+  ('0' +  (SIZE    % 10)),
+  ']',
+#ifdef KEY
+  ' ','k','e','y','[', KEY, ']',
+#endif
+  '\0'};
+
+#ifdef __CLASSIC_C__
+int main(argc, argv) int argc; char *argv[];
+#else
+int main(int argc, char *argv[])
+#endif
+{
+  int require = 0;
+  require += info_size[argc];
+  (void)argv;
+  return require;
+}
+
+
+Determining size of __int16 failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2320484369/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2320484369.dir/build.make CMakeFiles/cmTryCompileExec2320484369.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2320484369.dir/__INT16_LIBZIP.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2320484369.dir/__INT16_LIBZIP.c.o   -c /home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT16_LIBZIP.c
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT16_LIBZIP.c:17:22: error: ‘__int16’ undeclared here (not in a function)
+ #define SIZE (sizeof(__int16))
+                      ^
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT16_LIBZIP.c:19:12: note: in expansion of macro ‘SIZE’
+   ('0' + ((SIZE / 10000)%10)),
+            ^
+gmake[1]: *** [CMakeFiles/cmTryCompileExec2320484369.dir/__INT16_LIBZIP.c.o] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec2320484369/fast] Error 2
+
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT16_LIBZIP.c:
+#include <sys/types.h>
+#include <stdint.h>
+#include <stddef.h>
+
+
+#undef KEY
+#if defined(__i386)
+# define KEY '_','_','i','3','8','6'
+#elif defined(__x86_64)
+# define KEY '_','_','x','8','6','_','6','4'
+#elif defined(__ppc__)
+# define KEY '_','_','p','p','c','_','_'
+#elif defined(__ppc64__)
+# define KEY '_','_','p','p','c','6','4','_','_'
+#endif
+
+#define SIZE (sizeof(__int16))
+char info_size[] =  {'I', 'N', 'F', 'O', ':', 's','i','z','e','[',
+  ('0' + ((SIZE / 10000)%10)),
+  ('0' + ((SIZE / 1000)%10)),
+  ('0' + ((SIZE / 100)%10)),
+  ('0' + ((SIZE / 10)%10)),
+  ('0' +  (SIZE    % 10)),
+  ']',
+#ifdef KEY
+  ' ','k','e','y','[', KEY, ']',
+#endif
+  '\0'};
+
+#ifdef __CLASSIC_C__
+int main(argc, argv) int argc; char *argv[];
+#else
+int main(int argc, char *argv[])
+#endif
+{
+  int require = 0;
+  require += info_size[argc];
+  (void)argv;
+  return require;
+}
+
+
+Determining size of __int32 failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec140730708/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec140730708.dir/build.make CMakeFiles/cmTryCompileExec140730708.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec140730708.dir/__INT32_LIBZIP.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec140730708.dir/__INT32_LIBZIP.c.o   -c /home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT32_LIBZIP.c
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT32_LIBZIP.c:17:22: error: ‘__int32’ undeclared here (not in a function)
+ #define SIZE (sizeof(__int32))
+                      ^
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT32_LIBZIP.c:19:12: note: in expansion of macro ‘SIZE’
+   ('0' + ((SIZE / 10000)%10)),
+            ^
+gmake[1]: *** [CMakeFiles/cmTryCompileExec140730708.dir/__INT32_LIBZIP.c.o] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec140730708/fast] Error 2
+
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT32_LIBZIP.c:
+#include <sys/types.h>
+#include <stdint.h>
+#include <stddef.h>
+
+
+#undef KEY
+#if defined(__i386)
+# define KEY '_','_','i','3','8','6'
+#elif defined(__x86_64)
+# define KEY '_','_','x','8','6','_','6','4'
+#elif defined(__ppc__)
+# define KEY '_','_','p','p','c','_','_'
+#elif defined(__ppc64__)
+# define KEY '_','_','p','p','c','6','4','_','_'
+#endif
+
+#define SIZE (sizeof(__int32))
+char info_size[] =  {'I', 'N', 'F', 'O', ':', 's','i','z','e','[',
+  ('0' + ((SIZE / 10000)%10)),
+  ('0' + ((SIZE / 1000)%10)),
+  ('0' + ((SIZE / 100)%10)),
+  ('0' + ((SIZE / 10)%10)),
+  ('0' +  (SIZE    % 10)),
+  ']',
+#ifdef KEY
+  ' ','k','e','y','[', KEY, ']',
+#endif
+  '\0'};
+
+#ifdef __CLASSIC_C__
+int main(argc, argv) int argc; char *argv[];
+#else
+int main(int argc, char *argv[])
+#endif
+{
+  int require = 0;
+  require += info_size[argc];
+  (void)argv;
+  return require;
+}
+
+
+Determining size of __int64 failed with the following output:
+Change Dir: /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec335138179/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec335138179.dir/build.make CMakeFiles/cmTryCompileExec335138179.dir/build
+gmake[1]: Entering directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/Remdul/git2/libzip/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec335138179.dir/__INT64_LIBZIP.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec335138179.dir/__INT64_LIBZIP.c.o   -c /home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT64_LIBZIP.c
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT64_LIBZIP.c:17:22: error: ‘__int64’ undeclared here (not in a function)
+ #define SIZE (sizeof(__int64))
+                      ^
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT64_LIBZIP.c:19:12: note: in expansion of macro ‘SIZE’
+   ('0' + ((SIZE / 10000)%10)),
+            ^
+gmake[1]: *** [CMakeFiles/cmTryCompileExec335138179.dir/__INT64_LIBZIP.c.o] Error 1
+gmake[1]: Leaving directory `/home/Remdul/git2/libzip/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec335138179/fast] Error 2
+
+/home/Remdul/git2/libzip/CMakeFiles/CheckTypeSize/__INT64_LIBZIP.c:
+#include <sys/types.h>
+#include <stdint.h>
+#include <stddef.h>
+
+
+#undef KEY
+#if defined(__i386)
+# define KEY '_','_','i','3','8','6'
+#elif defined(__x86_64)
+# define KEY '_','_','x','8','6','_','6','4'
+#elif defined(__ppc__)
+# define KEY '_','_','p','p','c','_','_'
+#elif defined(__ppc64__)
+# define KEY '_','_','p','p','c','6','4','_','_'
+#endif
+
+#define SIZE (sizeof(__int64))
+char info_size[] =  {'I', 'N', 'F', 'O', ':', 's','i','z','e','[',
+  ('0' + ((SIZE / 10000)%10)),
+  ('0' + ((SIZE / 1000)%10)),
+  ('0' + ((SIZE / 100)%10)),
+  ('0' + ((SIZE / 10)%10)),
+  ('0' +  (SIZE    % 10)),
+  ']',
+#ifdef KEY
+  ' ','k','e','y','[', KEY, ']',
+#endif
+  '\0'};
+
+#ifdef __CLASSIC_C__
+int main(argc, argv) int argc; char *argv[];
+#else
+int main(int argc, char *argv[])
+#endif
+{
+  int require = 0;
+  require += info_size[argc];
+  (void)argv;
+  return require;
+}
+
+
