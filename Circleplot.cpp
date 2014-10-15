@@ -26,9 +26,6 @@ using namespace GeographicLib;
 using boost::format;
 using boost::io::group;
 
-int answer;
-ifstream file("data.txt");
-string line;
 
 string cutWhitespace(string text) {
 	boost::trim(text);
@@ -130,19 +127,21 @@ vector<string> split(const string& s, char c) {
 
 void processFile()
 {
+    string line;
+    ifstream file("data.txt");
+
 	Circle cir;
 	vector<string> v;
 	while (std::getline(file, line)) {
 		cout << line << endl;
 		v = split(line, ',');
-
 		cir.setValues(v[0], cutWhitespace(v[1]), v[2], v[3]);
-		cir.printValues();
 	}
 }
 
 void printKml() {
 	ofstream handle;
+
 	Circle cir;
 	string cutSpot;
 	string filePre = "CircleSpots.kml";
@@ -163,16 +162,15 @@ string prepKml()
     ostringstream stream;
     Circle cir;
     vector<string> v;
+    string line;
+    ifstream file("data.txt");
+
 
     stream << "<?xml version='1.0' encoding='utf-8'?>\n";
     stream << "<kml xmlns='http://www.opengis.net/kml/2.2'>\n";
     stream << "<Document>\n";
-    while (std::getline(file, line)) {
-        cout << line << endl;
-        v = split(line, ',');
-        cir.setValues(v[0], cutWhitespace(v[1]), v[2], cutQuotes(v[3]));
-        stream << cir.FormatPlacemark();
-    }
+    stream << processFile();
+    stream << cir.FormatPlacemark();
     stream << "</Document>\n";
     stream << "</kml>\n";
     return stream.str();
@@ -181,11 +179,11 @@ string prepKml()
 void createZip()
 {
     string file = "Circlespots.kml";
-    char *data  = prepKml().c_str();
+    string data  = prepKml();
 
     int error = 0;
     zip *archive = zip_open("Circleplot.zip", 0, &error);
-    zip_source *source = zip_source_buffer(archive, data, sizeof(data), 0);
+    zip_source *source = zip_source_buffer(archive, data.c_str(), data.size(), 0);
     int index = (int)zip_file_add(archive, file.c_str(), source, ZIP_FL_OVERWRITE);
 }
 
@@ -230,6 +228,10 @@ int mainLoop()
 {
 	vector<string> v;
 	Circle cir;
+    int answer;
+    ifstream file("data.txt");
+    string line;
+    bool hasProcessed = false;
 
 	cout << "Welcome to Bryan Elliott's Map Circle Maker!" 				<< endl;
 	cout << "+------------------------------------------+" 				<< endl;
@@ -237,7 +239,7 @@ int mainLoop()
 	cout << format("|%-42s|") % "0) Quit. I didn't want to be here." 	<< endl;
 	cout << format("|%-42s|") % "1) Process File and Display Details"	<< endl;
 	cout << format("|%-42s|") % "2) Export KML File"					<< endl;
-	cout << format("|%-42s|") % "3) Create Circle. Temp" 				<< endl;
+	cout << format("|%-42s|") % "3) --Redacted--"          				<< endl;
 	cout << "+------------------------------------------+" 				<< endl;
 	cout << ">> ";
 	cin >> answer;
@@ -247,6 +249,8 @@ int mainLoop()
 	} else if (answer == 1) {
 		cout << "Processing File..." << endl;
 		processFile();
+		hasProcessed = true;
+		cir.printValues();
 		return 0;
 	}
 
@@ -255,12 +259,17 @@ int mainLoop()
 	    cout << "1) Zip File" << endl;
 	    cout << "2) KML File Only" << endl;
 	    int subanswer = cin;
-	    if (cin == 1)
+	    if (hasProcessed == false)
+	    {
+	        cout << "Please process some data first." << endl;
+	        break;
+	    }
+	    if (subanswer == 1)
 	    {
             cout << "Exporting ZIP File..." << endl;
 	        createZip();
 	    }
-	    else if (cin == 2)
+	    else if (subanswer == 2)
 	    {
 	        cout << "Exporting KML File..." << endl;
 	        printKml();
@@ -272,15 +281,9 @@ int mainLoop()
 	    }
 	    cout << "Completed." << endl;
 		return 0;
-	} else if (answer == 3) {
-		cout << "Creating Circle..." << endl;
-		while (std::getline(file, line)) {
-			cout << line << endl;
-			v = split(line, ',');
-			cir.setValues(v[0], cutWhitespace(v[1]), v[2], cutQuotes(v[3]));
-			cout << cir.createCircle();
+	} else if (answer == 3)
+	{
 			cout << "------------------------------" << endl << endl << endl;
-		}
 		return 0;
 	} else {
 		cout << "Invalid choice." << endl;
