@@ -27,7 +27,7 @@ string Circle::FormatPlacemark()
     ostringstream tt;
     string combined;
 
-
+/*
     ss
 		<< "<Placemark>\n"
 		<< "<name>" 		<< getSpot() << "</name>\n"
@@ -43,6 +43,6 @@ string Circle::FormatPlacemark()
 		<< "</Placemark>\n";
 
 	combined = ss.str()+rr.str()+tt.str();
-    return combined;
+    return combined;*/
 }
 
