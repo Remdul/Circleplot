@@ -13,11 +13,12 @@ using namespace GeographicLib;
 
 struct Circle {
 public:
+    Circle(){}
+    Circle(const string &line);
 	string getSpot();
 	double getRadius(string);
 	GeoCoords getCoords();
 	string getDesc();
-	void setValues(string, string, string, string);
 	void printValues();
 	string FormatPlacemark();
 	double getLon();
@@ -25,6 +26,7 @@ public:
 	double getRealrad();
 	string createCircle();
 private:
+    void        setValues(string, string, string, string);
 	string 		spot;
 	GeoCoords 	coords;
 	double 		radius;
@@ -40,6 +42,9 @@ double		getRealrad();
 double 		getLon();
 double 		getLat();
 string 		createCircle();
+vector<string> split(const string& s, char c);
+string      prepKml();
+
 
 
 #endif

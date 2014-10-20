@@ -27,6 +27,7 @@ using boost::format;
 using boost::io::group;
 
 
+
 string cutWhitespace(string text) {
 	boost::trim(text);
 	boost::regex regexPattern { "[[:space:]]+", boost::regex_constants::egrep };
@@ -109,6 +110,12 @@ double Circle::getLat() {
 double Circle::getLon() {
 	return lon;
 }
+Circle::Circle(const string &line)
+{
+    vector<string> v;
+    v = split(line, ',');
+    setValues(v[0], v[1], v[2], v[3]);
+}
 
 vector<string> split(const string& s, char c) {
     vector<string> v;
@@ -125,18 +132,15 @@ vector<string> split(const string& s, char c) {
 	return v;
 }
 
-void processFile()
+string processFile()
 {
     string line;
     ifstream file("data.txt");
-
-	Circle cir;
-	vector<string> v;
+    stringstream out;
 	while (std::getline(file, line)) {
-		cout << line << endl;
-		v = split(line, ',');
-		cir.setValues(v[0], cutWhitespace(v[1]), v[2], v[3]);
+		out << Circle(line).FormatPlacemark();
 	}
+	return out.str();
 }
 
 void printKml() {
@@ -258,11 +262,11 @@ int mainLoop()
 	    cout << "Export File To:" << endl;
 	    cout << "1) Zip File" << endl;
 	    cout << "2) KML File Only" << endl;
-	    int subanswer = cin;
+	    int subanswer;
+	    cin >> subanswer;
 	    if (hasProcessed == false)
 	    {
 	        cout << "Please process some data first." << endl;
-	        break;
 	    }
 	    if (subanswer == 1)
 	    {
@@ -277,7 +281,7 @@ int mainLoop()
 	    else
 	    {
 	        cout << "Uhm... invalid answer..." << endl;
-	        break;
+
 	    }
 	    cout << "Completed." << endl;
 		return 0;
