@@ -3,7 +3,8 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <regex>
+#include <pcrecpp.h>
+#include <fstream>
 
 #include "libzip/lib/zip.h"
 #include "GeographicLib/UTMUPS.hpp"			//Conversion of MGRS
@@ -19,47 +20,110 @@
 using namespace std;
 using namespace GeographicLib;
 
-//---------------------------------------------------------------------------------------------------------------------------------------------//
-// Class Information Handlers //
-//---------------------------//
+  //---------------------------------------------------------------------------------------------------------------------------------------------//
+ // Class Information Handlers //
+//----------------------------//
 
-void Circle::setValues(string newSpot, string newCoords, string newRadius, string newDescription)
+void Circle::setValues(string newSpot, string newCoords, double newRadius, string newDescription)
 {
     GeoCoords   c(newCoords);
     spot        = newSpot;
-    coords      = c;
-    radius      = getRadius(newRadius);
+    coordinate  = c;
+    radius      = newRadius;
     description = newDescription;
 }
 
-string Circle::getSpot() {return spot;}
-
-double Circle::getRadius(string radius) {
-    radius      = trim(radius);
-    regex       radsearch("([0-9.\\s]*)([a-zA-Z]*)", std::regex_constants::basic);
-    smatch      match;
-    cout << radius << endl;
-    regex_match(radius, match, radsearch);
-    double convertedRad = stringToDouble(match[0]);
-    cout << convertedRad << match[0] << match[1];
-
-
-
-
-
-
+string Circle::getSpot() {
+    return spot;
 }
-GeoCoords getCoords();
-string getDesc();
-double getLon();
-double getLat();
-double getRealrad();
+double Circle::getRadius() {
+    return radius;
+}
+GeoCoords Circle::getCoords() {
+    return coordinate;
+}
+string Circle::getDesc() {
+    return description;
+}
 
-int main()
+Circle::Circle(string spot, string coordinate, double radius, string description)
 {
-    Circle cir;
+    setValues(spot, coordinate, radius, description);
+}
 
-    cir.getRadius("2000km");
+
+  //---------------------------------------------------------------------------------------------------------------------------------------------//
+ // File Handlers //
+//---------------//
+
+Circle parseLine(const string line) {
+    string spot;
+    string coordinate;
+    double radius;
+    string unit;
+    string description;
+    pcrecpp::RE regex(R"!(^(.+?),(.+?),\s*([\d\.]+)(KM|M),\s*"(.+)")!");
+    if (!regex.PartialMatch(line, &spot, &coordinate, &radius, &unit, &description)) {
+        cout << "Could not parse ->" << line << "<-" << endl;
+        throw string("Error");
+    }
+    if (unit == "M") {
+        radius *= 1;
+    }
+    else if (unit == "KM") {
+        radius *= 1000;
+    }
+    else {
+        throw string("Unknown unit: ") + unit;
+    }
+//    double convRadius = (double) radius;
+    return Circle(spot, coordinate, radius, description);
+}
+
+vector<Circle> processFile(string filename) {
+    string line;
+    ifstream file(filename);
+    stringstream out;
+    vector<Circle> fileLines;
+
+    while (std::getline(file, line)) {
+        if (!file.eof())
+        {
+            fileLines.push_back(parseLine(line));
+        }
+    }
+    return fileLines;
+}
+
+void Circle::printValues()
+{
+    cout << getSpot() << endl;
+    cout << getRadius() << endl;
+    cout << getCoords().MGRSRepresentation() << endl;
+    cout << getDesc() << endl;
+}
+
+
+  //---------------------------------------------------------------------------------------------------------------------------------------------//
+ // Main Application //
+//------------------//
+
+int main(int argc, char *argv[])
+{
+    if (argc >= 3 || argc <= 1)
+    {
+        cout << "Invalid Arguments. Please provide a filename only." << endl;
+        return 0;
+    }
+    string filename = argv[1];
+    vector<Circle> circles;
+    circles = processFile(filename);
+    int i;
+    for (i = 0; i < circles.size(); i++)
+    {
+        circles[i].printValues();
+    }
+
 }
 
 

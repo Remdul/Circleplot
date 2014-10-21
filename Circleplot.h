@@ -13,11 +13,12 @@ struct Circle {
 public:
     // Constructors //
     Circle() {}
-    Circle(const string &line);
+    //Circle(const string &spot, const string &coordinate, double radius = 0, const string &description="");
+    Circle(string spot, string coordinate, double radius, string description);
 
     // Private Information Grabbers //
     string          getSpot();
-    double          getRadius(string);
+    double          getRadius();
     GeoCoords       getCoords();
     string          getDesc();
     double          getRealrad();
@@ -28,16 +29,16 @@ public:
     string          createCircle();
 
 private:
-    void            setValues(string spot, string coords, string radius, string description);
+    void            setValues(string newSpot, string newCoords, double newRadius, string newDescription);
     string          spot;
-    GeoCoords       coords;
+    GeoCoords       coordinate;
     double          radius;
     string          description;
 };
 
 // Prototypes //
 GeoCoords           getCoords();
-double              getRadius(string);
+double              getRadius();
 double              getRealrad();
 string              createCircle();
 vector<string>      split(const string& s, char c);
