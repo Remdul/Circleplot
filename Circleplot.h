@@ -13,7 +13,6 @@ struct Circle {
 public:
     // Constructors //
     Circle() {}
-    //Circle(const string &spot, const string &coordinate, double radius = 0, const string &description="");
     Circle(string spot, string coordinate, double radius, string description);
 
     // Private Information Grabbers //
@@ -25,7 +24,7 @@ public:
 
     // Information Display //
     void            printValues();
-    string          FormatPlacemark();
+    string          generatePlacemark();
     string          createCircle();
 
 private:
@@ -37,11 +36,8 @@ private:
 };
 
 // Prototypes //
-GeoCoords           getCoords();
-double              getRadius();
-double              getRealrad();
-string              createCircle();
-vector<string>      split(const string& s, char c);
-string              prepKml();
+string              prepKml(vector<Circle> circles);
+void                createZip(string filename, vector<Circle> circles);
+
 
 #endif
